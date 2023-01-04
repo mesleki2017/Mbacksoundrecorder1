@@ -18,3 +18,15 @@ There are mainly two types of Broadcast Receivers:
 
 https://www.geeksforgeeks.org/broadcast-receiver-in-android-with-example/
 buradki örnek çalıştı
+
+
+## FLOW
+- FLow mantığını öğrenmem gerekiyor bazı kodaları anlamak için
+- https://blog.mindorks.com/what-is-flow-in-kotlin-and-how-to-use-it-in-android-project/
+   In coroutines, a flow is a type that can emit multiple values sequentially,
+as opposed to suspend functions that return only a single value.
+For example, you can use a flow to receive live updates from a database.
+  yukardaki linkte olan örneği uyguladım çalışıyor. ama nackground location tracking örneğindeki
+stili uygulayamadım.
+
+##Interfaces in Kotlin
