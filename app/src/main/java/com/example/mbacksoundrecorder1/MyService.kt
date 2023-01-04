@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.*
 class MyService: Service(){
     private  var elma = denemeinterface()
     private lateinit var armut:Mdefclient
+
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     lateinit var flow: Flow<Int>//bu flow bakgroun locationda kullanılan flow tarzı değil
 
@@ -31,7 +32,7 @@ class MyService: Service(){
         super.onCreate()
         setupFlow()
         //elma.birfonksiyonInterfacedenGelen()
-        armut=Mdefclient()
+        armut=Mdefclient(3)
         //Log.d("aaa",elma.birdeger)// interface anlama
     }
 
@@ -49,7 +50,8 @@ class MyService: Service(){
         Log.d("aaa","start fonksiyonu calisti")
         Log.d("aaa", armut.benfonk().toString())
         armut.degisken1="portakal var"
-        Log.d("aaa11", armut.degisken1)
+        Log.d("aaa11 armut.degisken1", armut.degisken1)
+        Log.d("aaa11 karesi", armut.karesi().toString())
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Log.d("aaa","Build.VERSION.SDK_INT")
             val  channel=NotificationChannel("deneme","deneme", NotificationManager.IMPORTANCE_LOW)
@@ -110,6 +112,9 @@ class MyService: Service(){
 }
 
 // interface anlama
+// interface bir
 class  denemeinterface:Mclient {
+    override val birdeger: Int
+        get() = 4
 
 }

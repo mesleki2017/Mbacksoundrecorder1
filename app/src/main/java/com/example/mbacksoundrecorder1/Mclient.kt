@@ -10,7 +10,13 @@ import kotlinx.coroutines.flow.flowOn
 
 interface Mclient {
 
-    //val birdeger: String
+    val birdeger: Int
+
+    fun karesi(): Int {
+        var kkk=birdeger*birdeger
+        Log.d("aaa",kkk.toString())
+        return birdeger*birdeger
+    }
 
     fun birfonksiyonInterfacedenGelen(){
         Log.d("aaa","interface deki fonksion calisti")
