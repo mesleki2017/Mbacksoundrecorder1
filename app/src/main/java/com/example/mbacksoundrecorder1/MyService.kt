@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.*
 
 
 class MyService: Service(){
-    private  var elma = denemeinterface()
+
     private lateinit var armut:Mdefclient
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -52,6 +52,7 @@ class MyService: Service(){
         armut.degisken1="portakal var"
         Log.d("aaa11 armut.degisken1", armut.degisken1)
         Log.d("aaa11 karesi", armut.karesi().toString())
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Log.d("aaa","Build.VERSION.SDK_INT")
             val  channel=NotificationChannel("deneme","deneme", NotificationManager.IMPORTANCE_LOW)
@@ -72,6 +73,11 @@ class MyService: Service(){
         notification.build()// bu olmadan notification gozukmuyor
         setupClicks()
 
+
+        armut.flowdeneme()
+            .catch {  e -> e.printStackTrace() }
+            .onEach { Log.d("aaa","flow denemeler") }
+            .launchIn(serviceScope)
 
         Log.d("aaa","start fonksiyonu sona geldi")
     }
@@ -111,10 +117,3 @@ class MyService: Service(){
     }
 }
 
-// interface anlama
-// interface bir
-class  denemeinterface:Mclient {
-    override val birdeger: Int
-        get() = 4
-
-}

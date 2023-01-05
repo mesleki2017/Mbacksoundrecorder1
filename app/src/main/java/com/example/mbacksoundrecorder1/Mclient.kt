@@ -23,6 +23,8 @@ interface Mclient {
         Log.d("aaa","interface deki fonksion calisti")
     }
 
+    fun flowdeneme():Flow<Int>
+
 }
 
 
