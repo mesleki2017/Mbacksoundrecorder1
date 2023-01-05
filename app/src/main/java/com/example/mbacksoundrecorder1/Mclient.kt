@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.flowOn
 
 
 interface Mclient {
+    //buraya bir flow eklemek istiyorum
 
     val birdeger: Int
 
