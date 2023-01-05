@@ -21,7 +21,6 @@ class MyService: Service(){
     private lateinit var armut:Mdefclient
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    lateinit var flow: Flow<Int>//bu flow bakgroun locationda kullanılan flow tarzı değil
 
     override fun onBind(p0: Intent?): IBinder? {
         Log.d("aaa","onBind ")
@@ -30,7 +29,6 @@ class MyService: Service(){
 
     override fun onCreate() {
         super.onCreate()
-        setupFlow()
         //elma.birfonksiyonInterfacedenGelen()
         armut=Mdefclient(3)
         //Log.d("aaa",elma.birdeger)// interface anlama
@@ -71,7 +69,6 @@ class MyService: Service(){
         notificationManager.notify(1, bbb.build())
         //startForeground(1, notification.build())
         notification.build()// bu olmadan notification gozukmuyor
-        setupClicks()
 
 
         armut.flowdeneme()
@@ -91,25 +88,6 @@ class MyService: Service(){
     }
 
 
-    private fun setupClicks() {
-            CoroutineScope(Dispatchers.IO).launch {
-                flow.collect {
-                    Log.d("aaa", it.toString())
-                }
-            }
-    }
-
-    fun setupFlow(){
-        flow = flow {
-            Log.d("aaa", "Start flow")
-            (0..3).forEach {
-                // Emit items with 500 milliseconds delay
-                delay(500)
-                Log.d("aaa", "Emitting $it")
-                emit(it)
-            }
-        }.flowOn(Dispatchers.IO)
-    }
 
     companion object {
         const val ACTION_START = "ACTION_START"
