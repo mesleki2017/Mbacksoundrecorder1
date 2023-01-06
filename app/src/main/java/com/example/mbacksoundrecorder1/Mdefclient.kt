@@ -26,11 +26,10 @@ class Mdefclient(
 
     @SuppressLint("MissingPermission")
     override fun flowdeneme(): Flow<String> {
-
         return callbackFlow {
             if(!context.myPermissionAl()) {
-                Log.d("aaa","Missing  permission")
-            }else{Log.d("aaa","OK permission")}
+                Log.d("aaa permission","Missing  permission")
+            }else{Log.d("aaa permission","OK permission")}
 
             degisken2 += 1
             Log.d("aaa"," **********flow")
