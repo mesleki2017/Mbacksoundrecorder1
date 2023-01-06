@@ -29,7 +29,7 @@ class MyService: Service(){
 
     override fun onCreate() {
         super.onCreate()
-        armut=Mdefclient(3)
+        armut=Mdefclient(applicationContext,3)
 
     }
 
