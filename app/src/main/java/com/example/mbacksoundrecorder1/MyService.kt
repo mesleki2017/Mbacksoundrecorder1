@@ -57,8 +57,8 @@ class MyService: Service(){
         }
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notification = NotificationCompat.Builder(this, "deneme")
-            .setContentTitle("1111")
-            .setContentText("22222")
+            .setContentTitle("Bir Baslik")
+            .setContentText("data yok")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setOngoing(true)
 

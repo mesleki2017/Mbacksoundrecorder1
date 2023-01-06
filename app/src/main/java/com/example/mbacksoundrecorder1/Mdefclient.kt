@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 class Mdefclient(override val birdeger: Int) : Mclient {
     var degisken1 : String = " elma yok "
+    var degisken2 : Int = 0
 
     fun benfonk(){
         Log.d("aaa","mdefclient teki fonksiyon calisti // " + degisken1)
@@ -19,17 +20,17 @@ class Mdefclient(override val birdeger: Int) : Mclient {
 
 
     override fun flowdeneme(): Flow<String> {
-        return callbackFlow {
-            Log.d("aaa"," **********flow")
 
+        return callbackFlow {
+            degisken2 += 1
+            Log.d("aaa"," **********flow")
             launch{
                 Log.d("aaa"," ********** flow launch")
-                send(" flow launch dan send edilen")
+                send(degisken2.toString())
             }
             awaitClose {Log.d("aaa"," **********awaitClose")}
             // awaitclose yazımca her seferinde send deki datayı gönderdi MyService e
-
         }
-        //Looper.getMainLooper()
+
     }
 }
