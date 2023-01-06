@@ -23,7 +23,12 @@ interface Mclient {
         Log.d("aaa","interface deki fonksion calisti")
     }
 
-    fun flowdeneme():Flow<Int>
+    fun flowdeneme():Flow<String>
+
+    class MyClass{
+        fun printMe() {Log.d("aaa","bir class suanda bir ise yaramayan")}
+    }
+
 
 }
 

@@ -29,9 +29,8 @@ class MyService: Service(){
 
     override fun onCreate() {
         super.onCreate()
-        //elma.birfonksiyonInterfacedenGelen()
         armut=Mdefclient(3)
-        //Log.d("aaa",elma.birdeger)// interface anlama
+
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -72,8 +71,13 @@ class MyService: Service(){
 
 
         armut.flowdeneme()
-            .catch {  e -> e.printStackTrace() }
-            .onEach { Log.d("aaa","flow denemeler") }
+            .catch {  }
+            .onEach {
+                Log.d("aaa12",it)
+                val yenimesaj=notification.setContentText(it)
+                notificationManager.notify(1, yenimesaj.build())
+                notification.build()
+            }
             .launchIn(serviceScope)
 
         Log.d("aaa","start fonksiyonu sona geldi")
