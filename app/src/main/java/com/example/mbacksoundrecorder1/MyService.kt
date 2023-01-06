@@ -71,8 +71,9 @@ class MyService: Service(){
 
 
         armut.flowdeneme()
-            .catch {  }
+            .catch { Log.d("aaa22","catch calisti" )}
             .onEach {
+                Log.d("aaa33","******onEach********" )
                 Log.d("aaa12",it)
                 val yenimesaj=notification.setContentText(it)
                 notificationManager.notify(1, yenimesaj.build())
@@ -85,6 +86,7 @@ class MyService: Service(){
 
     private fun stop() {
         Log.d("aaa","Myservice stop fonksiyonu calisti")
+        stopSelf()
     }
 
     override fun onDestroy() {

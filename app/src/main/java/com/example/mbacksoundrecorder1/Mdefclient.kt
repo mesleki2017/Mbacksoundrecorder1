@@ -4,6 +4,7 @@ import android.os.Looper
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
@@ -25,6 +26,8 @@ class Mdefclient(override val birdeger: Int) : Mclient {
                 Log.d("aaa"," ********** flow launch")
                 send(" flow launch dan send edilen")
             }
+            awaitClose {Log.d("aaa"," **********awaitClose")}
+            // awaitclose yazımca her seferinde send deki datayı gönderdi MyService e
 
         }
         //Looper.getMainLooper()
