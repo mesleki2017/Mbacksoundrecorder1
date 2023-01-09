@@ -55,11 +55,13 @@ class Mdefclient(
 
             Log.d("aaa"," **********flow")
             launch{
-
-                    degisken2 = mRecorder!!.maxAmplitude
+                while (isActive) {//flow u dongusek hale getirme calismasi yapıyorum
+                    //degisken2 = mRecorder!!.maxAmplitude
+                    degisken2=degisken2+1
                     Log.d("aaa", " ********** flow launch")
                     send(degisken2.toString())
-
+                    delay(1000L)
+                }
 
             }
             awaitClose {
