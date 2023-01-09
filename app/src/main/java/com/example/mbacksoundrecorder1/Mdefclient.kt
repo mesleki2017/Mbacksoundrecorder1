@@ -19,6 +19,7 @@ class Mdefclient(
     var degisken1 : String = " elma yok "
     var degisken2 : Int = 0
     private var mRecorder: MediaRecorder? = null
+    var jobAA: Job = Job()
 
     fun benfonk(){
         Log.d("aaa","mRecorder --->" + mRecorder)
@@ -37,6 +38,7 @@ class Mdefclient(
 
     @SuppressLint("MissingPermission")
     override fun flowdeneme(): Flow<String> {
+
         return callbackFlow {
             if(!context.myPermissionAl()) {
                 Log.d("aaa permission","Missing  permission")
@@ -45,8 +47,7 @@ class Mdefclient(
             try {
                 // mediarecorder start hata veriyordu  start butonuna 2. defa bastığımda
                 // asagidki if sorgusunu ekledim ise yariyormu test ediyorum
-                if (mRecorder == null) {
-                mRecorder!!.start()}
+                mRecorder!!.start()
             }catch (e:Exception){
                 Log.d("aaa mRecorder", e.toString())
                 //mRecorder!!.stop()
@@ -54,11 +55,11 @@ class Mdefclient(
 
 
             Log.d("aaa"," **********flow")
-            launch{
+            jobAA = launch{
                 while (isActive) {//flow u dongusek hale getirme calismasi yapıyorum
                     //degisken2 = mRecorder!!.maxAmplitude
                     degisken2=degisken2+1
-                    Log.d("aaa", " ********** flow launch")
+                    Log.d("aaa ses seviye", mRecorder!!.maxAmplitude.toString())
                     send(degisken2.toString())
                     delay(1000L)
                 }
@@ -66,6 +67,7 @@ class Mdefclient(
             }
             awaitClose {
                 Log.d("aaa"," **********awaitClose")
+                jobAA.cancel()
                 mRecorder!!.stop()
             }
             // awaitclose yazımca her seferinde send deki datayı gönderdi MyService e

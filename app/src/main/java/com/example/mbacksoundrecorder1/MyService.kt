@@ -47,6 +47,7 @@ class MyService: Service(){
         Log.d("aaa","start fonksiyonu calisti")
         Log.d("aaa", armut.benfonk().toString())
         armut.degisken1="portakal var"
+
         Log.d("aaa11 armut.degisken1", armut.degisken1)
         Log.d("aaa11 karesi", armut.karesi().toString())
 
@@ -86,6 +87,7 @@ class MyService: Service(){
 
     private fun stop() {
         Log.d("aaa","Myservice stop fonksiyonu calisti")
+        armut.jobAA.cancel()
         stopSelf()
     }
 
