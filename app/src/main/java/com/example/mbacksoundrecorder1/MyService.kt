@@ -7,13 +7,15 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.os.Environment
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-
+import java.io.File
+import java.io.FileWriter
 
 
 class MyService: Service(){
@@ -79,6 +81,7 @@ class MyService: Service(){
                 val yenimesaj=notification.setContentText(it)
                 notificationManager.notify(1, yenimesaj.build())
                 notification.build()
+                textDosyasiYaz(it+"\n");
             }
             .launchIn(serviceScope)
 
@@ -96,6 +99,14 @@ class MyService: Service(){
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    private  fun textDosyasiYaz(dataGir:String){
+        val dd: File? = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+        val file = File(dd, "ses444.txt")
+        val writer = FileWriter(file, true)
+        writer.append(dataGir)
+        writer.close()
     }
 
 
