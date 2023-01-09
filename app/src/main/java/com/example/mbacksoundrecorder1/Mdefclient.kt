@@ -21,13 +21,14 @@ class Mdefclient(
     private var mRecorder: MediaRecorder? = null
 
     fun benfonk(){
-        Log.d("aaa","mdefclient teki fonksiyon calisti // " + degisken1)
+        Log.d("aaa","mRecorder --->" + mRecorder)
+        if (mRecorder == null) {
         mRecorder= MediaRecorder().apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
             setOutputFile("/dev/null")
             setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-        }
+        }}
         try {
             mRecorder!!.prepare()
         }catch (e:Exception){Log.d("aaa mRecorder","mRecorder prepare de hata")}
@@ -42,9 +43,12 @@ class Mdefclient(
             }else{Log.d("aaa permission","OK permission")}
 
             try {
-                mRecorder!!.start()
+                // mediarecorder start hata veriyordu  start butonuna 2. defa bastığımda
+                // asagidki if sorgusunu ekledim ise yariyormu test ediyorum
+                if (mRecorder == null) {
+                mRecorder!!.start()}
             }catch (e:Exception){
-                Log.d("aaa mRecorder","mRecorder start hata")
+                Log.d("aaa mRecorder", e.toString())
                 //mRecorder!!.stop()
             }
 
@@ -58,7 +62,10 @@ class Mdefclient(
 
 
             }
-            awaitClose {Log.d("aaa"," **********awaitClose")}
+            awaitClose {
+                Log.d("aaa"," **********awaitClose")
+                mRecorder!!.stop()
+            }
             // awaitclose yazımca her seferinde send deki datayı gönderdi MyService e
         }
 
