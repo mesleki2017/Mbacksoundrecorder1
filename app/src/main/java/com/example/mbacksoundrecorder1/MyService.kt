@@ -1,6 +1,5 @@
 package com.example.mbacksoundrecorder1
 
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -16,6 +15,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.io.File
 import java.io.FileWriter
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MyService: Service(){
@@ -81,7 +83,13 @@ class MyService: Service(){
                 val yenimesaj=notification.setContentText(it)
                 notificationManager.notify(1, yenimesaj.build())
                 notification.build()
-                textDosyasiYaz(it+"\n");
+
+                // tarih saat ekledim
+                val currentTime: Date = Calendar.getInstance().getTime()
+                val dateFormat: DateFormat = SimpleDateFormat("HH:mm:ss")
+                val dateformatted: String = dateFormat.format(currentTime)
+                // text dosyasina yazma ekledim
+                textDosyasiYaz(dateformatted+","+it+"\n");
             }
             .launchIn(serviceScope)
 
