@@ -82,12 +82,15 @@ class MyService: Service(){
             }
             .launchIn(serviceScope)
 
+        startForeground(1, notification.build())
         Log.d("aaa","start fonksiyonu sona geldi")
     }
 
     private fun stop() {
         Log.d("aaa","Myservice stop fonksiyonu calisti")
-        armut.jobAA.cancel()
+        stopForeground(true)
+        armut.jobAA.cancel()//while loop taki job u cancel ediyor. baska yolunu bulamadım
+        armut.mRecorder!!.stop()
         stopSelf()
     }
 

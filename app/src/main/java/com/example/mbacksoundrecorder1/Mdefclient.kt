@@ -18,7 +18,7 @@ class Mdefclient(
     override val birdeger: Int) : Mclient {
     var degisken1 : String = " elma yok "
     var degisken2 : Int = 0
-    private var mRecorder: MediaRecorder? = null
+    var mRecorder: MediaRecorder? = null
     var jobAA: Job = Job()
 
     fun benfonk(){
@@ -57,9 +57,9 @@ class Mdefclient(
             Log.d("aaa"," **********flow")
             jobAA = launch{
                 while (isActive) {//flow u dongusek hale getirme calismasi yapıyorum
-                    //degisken2 = mRecorder!!.maxAmplitude
-                    degisken2=degisken2+1
-                    Log.d("aaa ses seviye", mRecorder!!.maxAmplitude.toString())
+                    degisken2 = mRecorder!!.maxAmplitude
+                    //degisken2=degisken2+1
+                    //Log.d("aaa ses seviye", mRecorder!!.maxAmplitude.toString())
                     send(degisken2.toString())
                     delay(1000L)
                 }
