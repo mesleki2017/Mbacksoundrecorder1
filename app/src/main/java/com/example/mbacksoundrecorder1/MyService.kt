@@ -10,7 +10,7 @@ import android.os.Environment
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import kotlinx.android.synthetic.main.activity_main.*
+
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.io.File
@@ -62,8 +62,8 @@ class MyService: Service(){
         }
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notification = NotificationCompat.Builder(this, "deneme")
-            .setContentTitle("Bir Baslik")
-            .setContentText("data yok")
+            .setContentTitle("Ses Seviyesi")
+            .setContentText("---")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setOngoing(true)
 
