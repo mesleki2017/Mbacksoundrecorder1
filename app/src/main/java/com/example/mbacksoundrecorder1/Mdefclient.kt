@@ -2,10 +2,13 @@ package com.example.mbacksoundrecorder1
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Context.SENSOR_SERVICE
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.media.MediaRecorder
 import android.os.Looper
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.content.ContextCompat.getSystemService
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -20,6 +23,7 @@ class Mdefclient(
     var degisken2 : Int = 0
     var mRecorder: MediaRecorder? = null
     var jobAA: Job = Job()
+    var portakal=Mclient.MySensor(context)
 
     fun benfonk(){
         Log.d("aaa","mRecorder --->" + mRecorder)
@@ -33,6 +37,10 @@ class Mdefclient(
         try {
             mRecorder!!.prepare()
         }catch (e:Exception){Log.d("aaa mRecorder","mRecorder prepare de hata")}
+
+
+        portakal.sensorAyar()
+        portakal.start()
     }
 
 
