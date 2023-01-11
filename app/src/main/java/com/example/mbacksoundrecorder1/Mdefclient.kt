@@ -21,6 +21,7 @@ class Mdefclient(
     override val birdeger: Int) : Mclient {
     var degisken1 : String = " elma yok "
     var degisken2 : Int = 0
+    var degisken3 : String =""
     var mRecorder: MediaRecorder? = null
     var jobAA: Job = Job()
     var portakal=Mclient.MySensor(context)
@@ -67,8 +68,10 @@ class Mdefclient(
                 while (isActive) {//flow u dongusek hale getirme calismasi yapıyorum
                     degisken2 = mRecorder!!.maxAmplitude
                     //degisken2=degisken2+1
-                    //Log.d("aaa ses seviye", mRecorder!!.maxAmplitude.toString())
-                    send(degisken2.toString())
+                    Log.d("aaa sensor job icinde ", portakal.mGravity[0].toString())
+                    degisken3=degisken2.toString()+","+portakal.mGravity[0].toString()
+
+                    send(degisken3.toString())
                     delay(1000L)
                 }
 

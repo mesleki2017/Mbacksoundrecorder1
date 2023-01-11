@@ -34,7 +34,7 @@ interface Mclient {
     class MySensor(private val context: Context): SensorEventListener {
         lateinit var sensorManager: SensorManager
         private lateinit var gsensor: Sensor
-        private val mGravity = FloatArray(3)
+        var mGravity = FloatArray(3)
 
         fun sensorAyar(){
             sensorManager=context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -52,7 +52,7 @@ interface Mclient {
                 mGravity[0]=event.values[0]
                 mGravity[1]=event.values[1]
                 mGravity[2]=event.values[2]
-                Log.d("aaa sensor", event.values[0].toString())
+                //Log.d("aaa sensor", mGravity[0].toString())
             }
         }
 
