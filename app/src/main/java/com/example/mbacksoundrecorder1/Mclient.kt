@@ -6,12 +6,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
-import androidx.core.content.getSystemService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 
 
 interface Mclient {
@@ -34,7 +29,7 @@ interface Mclient {
     class MySensor(private val context: Context): SensorEventListener {
         lateinit var sensorManager: SensorManager
         private lateinit var gsensor: Sensor
-        var mGravity = FloatArray(3)
+        var myAccelero = FloatArray(3)
 
         fun sensorAyar(){
             sensorManager=context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -46,12 +41,15 @@ interface Mclient {
                 SensorManager.SENSOR_DELAY_GAME)
 
         }
+        fun stop(){
+            sensorManager.unregisterListener(this)
+        }
 
         override fun onSensorChanged(event: SensorEvent?) {
             if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-                mGravity[0]=event.values[0]
-                mGravity[1]=event.values[1]
-                mGravity[2]=event.values[2]
+                myAccelero[0]=event.values[0]
+                myAccelero[1]=event.values[1]
+                myAccelero[2]=event.values[2]
                 //Log.d("aaa sensor", mGravity[0].toString())
             }
         }

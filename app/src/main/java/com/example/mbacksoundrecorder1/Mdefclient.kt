@@ -2,13 +2,8 @@ package com.example.mbacksoundrecorder1
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Context.SENSOR_SERVICE
-import android.hardware.Sensor
-import android.hardware.SensorManager
 import android.media.MediaRecorder
-import android.os.Looper
 import android.util.Log
-import androidx.core.content.ContextCompat.getSystemService
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -68,8 +63,8 @@ class Mdefclient(
                 while (isActive) {//flow u dongusek hale getirme calismasi yapıyorum
                     degisken2 = mRecorder!!.maxAmplitude
                     //degisken2=degisken2+1
-                    Log.d("aaa sensor job icinde ", portakal.mGravity[0].toString())
-                    degisken3=degisken2.toString()+","+portakal.mGravity[0].toString()
+                    Log.d("aaa sensor job icinde ", portakal.myAccelero[0].toString())
+                    degisken3=degisken2.toString()+","+portakal.myAccelero[0].toString()
 
                     send(degisken3.toString())
                     delay(1000L)
@@ -80,6 +75,7 @@ class Mdefclient(
                 Log.d("aaa"," **********awaitClose")
                 jobAA.cancel()
                 mRecorder!!.stop()
+                portakal.stop()
             }
             // awaitclose yazımca her seferinde send deki datayı gönderdi MyService e
         }
