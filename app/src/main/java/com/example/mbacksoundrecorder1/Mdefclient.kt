@@ -77,7 +77,6 @@ class Mdefclient(
                 mRecorder!!.stop()
                 portakal.stop()
             }
-            // awaitclose yazımca her seferinde send deki datayı gönderdi MyService e
         }
 
     }
