@@ -50,7 +50,6 @@ class MyService: Service(){
 
     private  fun myCall(){
         telAra()
-
     }
 
     private fun start() {
