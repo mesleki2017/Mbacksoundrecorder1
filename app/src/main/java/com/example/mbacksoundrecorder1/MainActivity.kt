@@ -3,6 +3,7 @@ package com.example.mbacksoundrecorder1
 import android.Manifest
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,20 +21,12 @@ class MainActivity : ComponentActivity() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.RECORD_AUDIO,Manifest.permission.CALL_PHONE
             ),
             0
         )
         setContentView(R.layout.activity_main)
 
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-            ),
-            0
-        )
 
         btn_start.setOnClickListener {
             Log.d("aaa","start butonuna basıldı")
@@ -52,6 +45,12 @@ class MainActivity : ComponentActivity() {
                 action = MyService.ACTION_STOP
                 startService(this)
             }
+        }
+
+        btn_call.setOnClickListener {
+            val intent = Intent(Intent.ACTION_CALL);
+            intent.data = Uri.parse("tel:$4440000")
+            startActivity(intent)
         }
 
         receiver = AirplaneModeChangeReceiver()

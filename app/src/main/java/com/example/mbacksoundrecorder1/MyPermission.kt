@@ -16,5 +16,9 @@ fun Context.myPermissionAl(): Boolean {
     return ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.RECORD_AUDIO
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CALL_PHONE
             ) == PackageManager.PERMISSION_GRANTED
 }
