@@ -48,9 +48,11 @@ class MainActivity : ComponentActivity() {
         }
 
         btn_call.setOnClickListener {
-            val intent = Intent(Intent.ACTION_CALL);
-            intent.data = Uri.parse("tel:$4440000")
-            startActivity(intent)
+            Log.d("aaa","call butonuna basıldı")
+            Intent(applicationContext, MyService::class.java).apply {
+                action = MyService.ACTION_CALL
+                startService(this)
+            }
         }
 
         receiver = AirplaneModeChangeReceiver()
@@ -66,5 +68,11 @@ class MainActivity : ComponentActivity() {
     override fun onStop() {
         super.onStop()
         unregisterReceiver(receiver)
+    }
+
+    fun telAra(){
+        val intent = Intent(Intent.ACTION_CALL);
+        intent.data = Uri.parse("tel:$4440000")
+        startActivity(intent)
     }
 }
