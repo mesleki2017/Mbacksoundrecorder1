@@ -97,6 +97,9 @@ class MyService: Service(){
                 val dateformatted: String = dateFormat.format(currentTime)
                 // text dosyasina yazma ekledim
                 textDosyasiYaz(dateformatted+","+it+"\n");
+                if(it=="ARA"){
+                    telAra()
+                }
             }
             .launchIn(serviceScope)
 
@@ -127,7 +130,7 @@ class MyService: Service(){
     fun telAra(){
         val intent = Intent(Intent.ACTION_CALL);
         intent .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.data = Uri.parse("tel:$4440000")
+        intent.data = Uri.parse("tel:$5075978492")
         startActivity(intent)
     }
 

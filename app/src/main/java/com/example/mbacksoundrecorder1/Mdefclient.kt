@@ -65,7 +65,9 @@ class Mdefclient(
                     //degisken2=degisken2+1
                     Log.d("aaa sensor job icinde ", portakal.myAccelero[0].toString())
                     degisken3=degisken2.toString()+","+portakal.myAccelero[0].toString()
-
+                    if (degisken2>20000){
+                        degisken3="ARA"
+                    }
                     send(degisken3.toString())
                     delay(1000L)
                 }
