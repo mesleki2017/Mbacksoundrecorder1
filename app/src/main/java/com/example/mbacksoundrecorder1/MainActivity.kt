@@ -49,10 +49,7 @@ class MainActivity : ComponentActivity() {
 
         btn_call.setOnClickListener {
             Log.d("aaa","call butonuna basıldı")
-            Intent(applicationContext, MyService::class.java).apply {
-                action = MyService.ACTION_CALL
-                startService(this)
-            }
+
         }
 
         receiver = AirplaneModeChangeReceiver()
