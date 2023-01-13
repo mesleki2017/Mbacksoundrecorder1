@@ -4,18 +4,26 @@ import android.Manifest
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.os.storage.StorageManager
+import android.provider.DocumentsContract
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.File
 
 class MainActivity : ComponentActivity() {
 
     lateinit var receiver: AirplaneModeChangeReceiver
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityCompat.requestPermissions(
@@ -48,7 +56,27 @@ class MainActivity : ComponentActivity() {
         }
 
         btn_call.setOnClickListener {
-            Log.d("aaa","call butonuna basıldı")
+            val mypath = filesDir
+            Log.d("aaa mypath1 ",mypath.path )
+
+            val intent = Intent()
+                .setType("*/*")
+                .setAction(Intent.ACTION_OPEN_DOCUMENT)
+                .putExtra(DocumentsContract.EXTRA_INITIAL_URI, mypath.toURI())
+            startActivityForResult(Intent.createChooser(intent, "Select a file"), 11)
+
+            val intent1 = Intent(StorageManager.ACTION_MANAGE_STORAGE)
+            //startActivity(intent1)
+
+            val file = File(filesDir, "")
+            Log.d("aaa mypath2 ",file.path)
+
+
+
+
+
+
+
 
         }
 
