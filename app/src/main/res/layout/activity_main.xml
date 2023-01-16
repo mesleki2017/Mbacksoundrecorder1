@@ -43,7 +43,7 @@
         android:id="@+id/btn_call"
         android:layout_width="140dp"
         android:layout_height="60dp"
-        android:text="call"
+        android:text="file"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
