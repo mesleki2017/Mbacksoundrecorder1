@@ -31,5 +31,25 @@ stili uygulayamadım.
 
 - https://stackoverflow.com/questions/54827455/how-to-implement-timer-with-kotlin-coroutines
 
-##Interfaces in Kotlin
+##10 gün ugrastim daha önceki repolarda kaydettiğim txt dosyasinin yerini file explorer da acmak icin
+
+``` kotlin
+btn_call.setOnClickListener {
+val dd: File? = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
+
+            val uri :Uri? = Uri.parse(dd?.toString())
+            //https://stackoverflow.com/questions/21544331/trying-open-a-specific-folder-in-android-using-intent
+            // bu koddan sonra mi acabildim tam eminde degilim
+            // o kadar cok deneme yanilma yaptimki
+
+            val intent = Intent()
+                .setAction(Intent.ACTION_VIEW)//burasi gerekli
+                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)//bunlar gereklimi emin degilim
+                .addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)//bunlar gereklimi emin degilim
+                .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)//bunlar gereklimi emin degilim
+                .setDataAndType(uri, "resource/folder")//burasi gerekli
+            startActivity(intent)
+
+        }
+```
 
