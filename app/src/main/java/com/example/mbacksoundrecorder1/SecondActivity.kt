@@ -13,7 +13,7 @@ class SecondActivity:AppCompatActivity() {
 
 
         btn_2.setOnClickListener {
-            Intent(this,MainActivity::class.java).also {
+            Intent(this,third_activity::class.java).also {
                 startActivity(it)
             }
         }
