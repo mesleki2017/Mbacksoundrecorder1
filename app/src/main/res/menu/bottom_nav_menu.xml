@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mySearch"
+        android:title="Search"
+        android:icon="@drawable/ic_search"
+    />
+
+    <item
+        android:id="@+id/myAdd"
+        android:title="Add"
+        android:icon="@drawable/ic_add"
+        />
+
+    <item
+        android:id="@+id/myperson"
+        android:title="Person"
+        android:icon="@drawable/ic_person"
+        />
+    <item
+        android:id="@+id/mySettings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"
+        />
+
+
+
+</menu>
