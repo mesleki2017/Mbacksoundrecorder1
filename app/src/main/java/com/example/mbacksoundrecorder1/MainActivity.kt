@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //https://www.section.io/engineering-education/getting-started-with-dialogs-in-android-kotlin/
     private fun showDefaultDialog(aaa:String) {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.apply {
