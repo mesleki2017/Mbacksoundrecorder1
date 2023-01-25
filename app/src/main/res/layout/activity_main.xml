@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btn23"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:text="buton1"
+        android:layout_gravity="center"
+        />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"

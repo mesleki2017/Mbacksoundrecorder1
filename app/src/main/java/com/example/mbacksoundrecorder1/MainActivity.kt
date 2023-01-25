@@ -4,6 +4,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +24,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
+
+        binding.btn23.setOnClickListener {
+            Log.d("aaa","butona basildi")
+        }
+
+
         receiver = AirplaneModeChangeReceiver()
 
         IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
@@ -31,6 +40,29 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.red-> {
+                Log.d("aaa","red secildi")
+                item.isChecked = !item.isChecked
+                true
+            }
+            R.id.blue-> {
+                Log.d("aaa","blue secildi")
+                item.isChecked = !item.isChecked
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+
+
+        }
+    }
+
+
     override fun onStop() {
         super.onStop()
         unregisterReceiver(receiver)
