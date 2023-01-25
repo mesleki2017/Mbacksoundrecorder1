@@ -69,7 +69,9 @@ class MainActivity : AppCompatActivity() {
     private fun showDefaultDialog(aaa:String) {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.apply {
-            setTitle(aaa)
+            setTitle("Sayi Sayma")
+            setMessage(aaa)
+            setNegativeButton("sifirla"){_,_->ddd=0}
         }.create().show()
     }
 
