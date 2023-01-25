@@ -5,8 +5,10 @@ import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
 
@@ -24,7 +26,37 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)//The 'kotlin-android-extensions' Gradle plugin is deprecated
         setContentView(binding.root)//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
-        binding.bottomNavigationView.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
+        //binding.bottomNavigationView.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
+        val bottomNav=binding.bottomNavigationView
+        bottomNav.background=null
+
+        bottomNav.setOnItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.mySearch-> {
+                    Log.d("aaa","mySerach e basildi")
+                    showDefaultDialog2("mySerach e basildi")
+                    true
+                }
+                R.id.myAdd-> {
+                    Log.d("aaa","myAdd e basildi")
+                    true
+                }
+                R.id.mySettings-> {
+                    Log.d("aaa","mySettings e basildi")
+                    true
+                }
+                R.id.myperson-> {
+                    Log.d("aaa","myperson e basildi")
+                    true
+                }
+                else -> {
+                    Log.d("aaa","mySerach else calisti")
+                   false}
+            }
+
+        }
+
 
 
         binding.btn23.setOnClickListener {
@@ -46,8 +78,11 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_menu,menu)
+        //menuInflater.inflate(R.menu.bottom_nav_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.red-> {
@@ -75,6 +110,16 @@ class MainActivity : AppCompatActivity() {
             setNegativeButton("sifirla"){_,_->ddd=0}
         }.create().show()
     }
+
+    private fun showDefaultDialog2(aaa:String) {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.apply {
+            setTitle("bottom nav dan")
+            setMessage(aaa)
+        }.create().show()
+    }
+
+
 
     override fun onStop() {
         super.onStop()
