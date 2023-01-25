@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btn23.setOnClickListener {
             Log.d("aaa","butona basildi")
+            showDefaultDialog()
         }
 
 
@@ -62,6 +64,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun showDefaultDialog() {
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.apply {
+            setTitle("Hello")
+        }.create().show()
+    }
 
     override fun onStop() {
         super.onStop()
