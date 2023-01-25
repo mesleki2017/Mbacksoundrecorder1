@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var receiver: AirplaneModeChangeReceiver
 
     private lateinit var binding: ActivityMainBinding//The 'kotlin-android-extensions' Gradle plugin is deprecated
+    private  var ddd:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.btn23.setOnClickListener {
             Log.d("aaa","butona basildi")
-            showDefaultDialog()
+            ddd += 1
+            showDefaultDialog(ddd.toString())
         }
 
 
@@ -64,10 +66,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDefaultDialog() {
+    private fun showDefaultDialog(aaa:String) {
         val alertDialog = AlertDialog.Builder(this)
         alertDialog.apply {
-            setTitle("Hello")
+            setTitle(aaa)
         }.create().show()
     }
 
