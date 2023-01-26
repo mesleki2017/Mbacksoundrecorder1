@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
     <Button
         android:id="@+id/btn23"
         android:layout_width="140dp"
@@ -15,13 +17,6 @@
         android:layout_gravity="center_horizontal|bottom"
         android:text="buton1" />
 
-    <com.androidplot.xy.XYPlot
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"

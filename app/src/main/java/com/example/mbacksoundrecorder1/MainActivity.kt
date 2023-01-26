@@ -2,15 +2,15 @@ package com.example.mbacksoundrecorder1
 
 import android.content.Intent
 import android.content.IntentFilter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+
 import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,12 +19,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding//The 'kotlin-android-extensions' Gradle plugin is deprecated
     private  var ddd:Int = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)//The 'kotlin-android-extensions' Gradle plugin is deprecated
         setContentView(binding.root)//The 'kotlin-android-extensions' Gradle plugin is deprecated
+
 
         //binding.bottomNavigationView.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
         val bottomNav=binding.bottomNavigationView
