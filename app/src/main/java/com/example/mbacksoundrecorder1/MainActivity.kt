@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)//The 'kotlin-android-extensions' Gradle plugin is deprecated
         setContentView(binding.root)//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
-        setLineChartData()
+
 
         //binding.bottomNavigationView.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
         val bottomNav=binding.bottomNavigationView
@@ -71,6 +71,8 @@ class MainActivity : AppCompatActivity() {
             Log.d("aaa","butona basildi")
             ddd += 1
             showDefaultDialog(ddd.toString())
+
+            setLineChartData(ddd.toFloat()*10)
         }
 
 
@@ -127,22 +129,11 @@ class MainActivity : AppCompatActivity() {
         }.create().show()
     }
 
-    fun setLineChartData() {
+    //https://medium.com/cnk-tech/android-line-chart-621f56410883
+    val linevalues = ArrayList<Entry>()
+    fun setLineChartData(deger1:Float) {
 
-        val linevalues = ArrayList<Entry>()
-        linevalues.add(Entry(20f, 0.0F))
-        linevalues.add(Entry(30f, 3.0F))
-        linevalues.add(Entry(40f, 2.0F))
-        linevalues.add(Entry(50f, 1.0F))
-        linevalues.add(Entry(60f, 8.0F))
-        linevalues.add(Entry(70f, 10.0F))
-        linevalues.add(Entry(80f, 1.0F))
-        linevalues.add(Entry(90f, 2.0F))
-        linevalues.add(Entry(100f, 5.0F))
-        linevalues.add(Entry(110f, 1.0F))
-        linevalues.add(Entry(120f, 20.0F))
-        linevalues.add(Entry(130f, 40.0F))
-        linevalues.add(Entry(140f, 50.0F))
+        linevalues.add(Entry(deger1, deger1))
 
         val linedataset = LineDataSet(linevalues, "First")
         //We add features to our chart

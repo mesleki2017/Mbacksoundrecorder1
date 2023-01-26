@@ -15,7 +15,14 @@
         android:layout_marginTop="52dp"
         android:layout_marginBottom="300dp"
         />
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Grafik icin Butona basin"
+    android:textSize="18dp"
+    android:layout_marginTop="50dp"
+    android:layout_gravity="center_horizontal"
+    />
     <Button
         android:id="@+id/btn23"
         android:layout_width="140dp"
