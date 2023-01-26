@@ -8,6 +8,21 @@
     tools:context=".MainActivity">
 
 
+    <io.github.farshidroohi.LineChart
+        android:id="@+id/lineChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:chart_bg_color="#FF2B4A83"
+        app:chart_line_color="#32FFFFFF"
+        app:chart_line_size="4dp"
+        app:chart_padding_bottom="20dp"
+        app:chart_padding_left="20dp"
+        app:chart_padding_right="20dp"
+        app:chart_padding_top="20dp"
+        android:layout_marginBottom="200dp"/>
+
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"

@@ -2,24 +2,60 @@ package com.example.mbacksoundrecorder1
 
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
+import io.github.farshidroohi.ChartEntity
+import io.github.farshidroohi.LineChart
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var receiver: AirplaneModeChangeReceiver
 
     private lateinit var binding: ActivityMainBinding//The 'kotlin-android-extensions' Gradle plugin is deprecated
+    private val graph2 =
+        floatArrayOf(0f, 245000f, 1011000f, 1000f, 0f, 0f, 47000f, 20000f, 12000f, 124400f, 160000f)
+    private val graph1 =
+        floatArrayOf(0f, 245000f, 1011000f, 1000f, 0f, 0f, 47000f, 20000f, 12000f, 124400f, 160000f)
+    private val legendArr = arrayListOf(
+        "05/21",
+        "05/22",
+        "05/23",
+        "05/24",
+        "05/25",
+        "05/26",
+        "05/27",
+        "05/28",
+        "05/29",
+        "05/30",
+        "05/31"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val firstChartEntity = ChartEntity(Color.WHITE, graph1)
+        val secondChartEntity = ChartEntity(Color.YELLOW, graph2)
+        val list = ArrayList<ChartEntity>().apply {
+            add(firstChartEntity)
+            add(secondChartEntity)
+        }
+        val lineChart = findViewById<LineChart>(R.id.lineChart)
+        lineChart.setLegend(legendArr)
+        lineChart.setList(list)
+
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)//The 'kotlin-android-extensions' Gradle plugin is deprecated
         setContentView(binding.root)//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
-        binding.bottomNavigationView.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
+
+        val myNav=binding.bottomNavigationView
+        myNav.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
+
 
         receiver = AirplaneModeChangeReceiver()
 
