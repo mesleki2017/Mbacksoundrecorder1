@@ -129,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         }.create().show()
     }
 
+    //https://stackoverflow.com/questions/59854223/displaying-a-barchart-using-mpandroidchart-with-kotlin
     //https://medium.com/cnk-tech/android-line-chart-621f56410883
     val linevalues = ArrayList<Entry>()
     fun setLineChartData(deger1:Float) {
