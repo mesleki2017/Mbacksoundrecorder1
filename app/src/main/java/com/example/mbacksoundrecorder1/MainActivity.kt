@@ -15,11 +15,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var receiver: AirplaneModeChangeReceiver
 
     private lateinit var binding: ActivityMainBinding//The 'kotlin-android-extensions' Gradle plugin is deprecated
-    private val graph2 =
+    private var graph2 =
         floatArrayOf(0f, 245000f, 1011000f, 1000f, 0f, 0f, 47000f, 20000f, 12000f, 124400f, 160000f)
-    private val graph1 =
+    private var graph1 =
         floatArrayOf(0f, 245000f, 1011000f, 1000f, 0f, 0f, 47000f, 20000f, 12000f, 124400f, 160000f)
-    private val legendArr = arrayListOf(
+    private var legendArr = arrayListOf(
         "05/21",
         "05/22",
         "05/23",
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         "05/30",
         "05/31"
     )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,32 @@ class MainActivity : AppCompatActivity() {
 
         val myNav=binding.bottomNavigationView
         myNav.background=null//The 'kotlin-android-extensions' Gradle plugin is deprecated
+
+        myNav.setOnItemSelectedListener {
+
+            when (it.itemId) {
+                R.id.mySearch-> {
+                    Log.d("aaa","mySerach e basildi")
+                    true
+                }
+                R.id.myAdd-> {
+                    Log.d("aaa","myAdd e basildi")
+                    true
+                }
+                R.id.mySettings-> {
+                    Log.d("aaa","mySettings e basildi")
+                    true
+                }
+                R.id.myperson-> {
+                    Log.d("aaa","myperson e basildi")
+                    true
+                }
+                else -> {
+                    Log.d("aaa","mySerach else calisti")
+                    false}
+            }
+
+        }
 
 
         receiver = AirplaneModeChangeReceiver()
