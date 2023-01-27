@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         "05/31"
     )
 
-
+// repo ismi deg
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
