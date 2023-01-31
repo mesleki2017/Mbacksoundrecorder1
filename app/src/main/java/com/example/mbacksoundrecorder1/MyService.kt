@@ -6,11 +6,17 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Binder
 import android.os.Build
 import android.os.Environment
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -27,14 +33,25 @@ class MyService: Service(){
 
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+    private val mBinder: IBinder = MyBinder()
+
+    public var sayi : Int=122
+
+    class MyBinder : Binder() {
+        val service: MyService
+            get() = MyService()
+    }
+
     override fun onBind(p0: Intent?): IBinder? {
         Log.d("aaa","onBind ")
-        return null
+        return mBinder
     }
 
     override fun onCreate() {
         super.onCreate()
+
         armut=Mdefclient(applicationContext,3)
+
 
     }
 
@@ -42,15 +59,10 @@ class MyService: Service(){
         when(intent?.action) {
             ACTION_START -> start()
             ACTION_STOP -> stop()
-            ACTION_CALL -> myCall()
         }
-        return super.onStartCommand(intent, flags, startId)
+        return START_STICKY
     }
 
-
-    private  fun myCall(){
-        telAra()
-    }
 
     private fun start() {
 
@@ -96,9 +108,6 @@ class MyService: Service(){
                 val dateformatted: String = dateFormat.format(currentTime)
                 // text dosyasina yazma ekledim
                 textDosyasiYaz(dateformatted+","+it+"\n");
-                if(it=="ARA"){
-                    telAra()
-                }
             }
             .launchIn(serviceScope)
 
@@ -126,13 +135,9 @@ class MyService: Service(){
         writer.close()
     }
 
-    fun telAra(){
-        val intent = Intent(Intent.ACTION_CALL);
-        intent .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.data = Uri.parse("tel:$5075978492")
-        startActivity(intent)
+    fun getRandomNumber(): String? {
+        return sayi.toString()
     }
-
     companion object {
         const val ACTION_START = "ACTION_START"
         const val ACTION_STOP = "ACTION_STOP"

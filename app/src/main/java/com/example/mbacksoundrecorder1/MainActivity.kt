@@ -1,11 +1,11 @@
 package com.example.mbacksoundrecorder1
 
 import android.Manifest
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.IBinder
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.core.app.ActivityCompat
@@ -14,6 +14,8 @@ import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import kotlinx.coroutines.*
+import java.util.ArrayList
 
 
 class MainActivity : ComponentActivity() {
@@ -21,6 +23,23 @@ class MainActivity : ComponentActivity() {
     lateinit var receiver: AirplaneModeChangeReceiver
     private lateinit var binding: ActivityMainBinding//The 'kotlin-android-extensions' Gradle plugin is deprecated
     private  var ddd:Int = 0
+
+    var myBoundMyService: MyService? = null
+    var mServiceBound = false
+    private var jobAA: Job = Job()// corutine jobu
+    private val scopeAA = MainScope()//
+
+    private val mServiceConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(className: ComponentName, binder: IBinder) {
+            myBoundMyService = (binder as MyService.MyBinder).service
+            Log.d("aaServiceConnection", "connected")
+            mServiceBound = true
+        }
+
+        override fun onServiceDisconnected(name: ComponentName) {
+            mServiceBound = false
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +52,10 @@ class MainActivity : ComponentActivity() {
         )
         setContentView(R.layout.activity_main)
 
+
+        val intent1 = Intent(this, MyService::class.java).also { it.putExtra("ccc","bu mainden servise gelen") }
+        bindService(intent1, mServiceConnection, Context.BIND_AUTO_CREATE);
+
         binding = ActivityMainBinding.inflate(layoutInflater)//The 'kotlin-android-extensions' Gradle plugin is deprecated
         setContentView(binding.root)//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
@@ -40,13 +63,12 @@ class MainActivity : ComponentActivity() {
         binding.btnStart.setOnClickListener {
             Log.d("aaa","start butonuna basıldı")
             binding.txtv1.text="Start"
-
-            setLineChartData(ddd.toFloat()*10)
-
             Intent(applicationContext, MyService::class.java).apply {
                 action = MyService.ACTION_START
                 startService(this)
+                //setLineChartData(it.toFloat())
             }
+            birsey_yap()
         }
 
         binding.btnStop.setOnClickListener {
@@ -56,6 +78,7 @@ class MainActivity : ComponentActivity() {
                 action = MyService.ACTION_STOP
                 startService(this)
             }
+            birsey_durdur()
         }
 
         binding.btnCall.setOnClickListener {
@@ -69,9 +92,6 @@ class MainActivity : ComponentActivity() {
         receiver = AirplaneModeChangeReceiver()
 
         IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
-            // registering the receiver
-            // it parameter which is passed in  registerReceiver() function
-            // is the intent filter that we have just created
             registerReceiver(receiver, it)
         }
 
@@ -100,14 +120,27 @@ class MainActivity : ComponentActivity() {
 
     }
 
+    private fun birsey_yap(){
+        jobAA = scopeAA.launch(Dispatchers.IO) {
+
+            while (isActive) {
+                withContext(Dispatchers.Main){
+                    val aa11=myBoundMyService?.getRandomNumber()
+                    Log.d("aaa55", aa11.toString())
+
+                }
+                delay(1000L)// delay sadece corutine icinde kullaniliyormus
+            }
+        }
+    }
+
+    private fun  birsey_durdur(){
+        jobAA.cancel()
+    }
+
     override fun onStop() {
         super.onStop()
         unregisterReceiver(receiver)
     }
 
-    fun telAra(){
-        val intent = Intent(Intent.ACTION_CALL);
-        intent.data = Uri.parse("tel:$4440000")
-        startActivity(intent)
-    }
 }

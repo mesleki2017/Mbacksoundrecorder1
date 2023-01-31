@@ -62,12 +62,7 @@ class Mdefclient(
             jobAA = launch{
                 while (isActive) {//flow u dongusek hale getirme calismasi yapıyorum
                     degisken2 = mRecorder!!.maxAmplitude
-                    //degisken2=degisken2+1
-                    Log.d("aaa sensor job icinde ", portakal.myAccelero[0].toString())
-                    degisken3=degisken2.toString()+","+portakal.myAccelero[0].toString()
-                    if (degisken2>20000){
-                        degisken3="ARA"
-                    }
+                    degisken3=degisken2.toString()
                     send(degisken3.toString())
                     delay(1000L)
                 }
