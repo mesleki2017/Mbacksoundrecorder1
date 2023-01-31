@@ -9,12 +9,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.core.app.ActivityCompat
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.mbacksoundrecorder1.databinding.ActivityMainBinding
+
+
 
 class MainActivity : ComponentActivity() {
 
     lateinit var receiver: AirplaneModeChangeReceiver
-
+    private lateinit var binding: ActivityMainBinding//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +29,13 @@ class MainActivity : ComponentActivity() {
         )
         setContentView(R.layout.activity_main)
 
+        binding = ActivityMainBinding.inflate(layoutInflater)//The 'kotlin-android-extensions' Gradle plugin is deprecated
+        setContentView(binding.root)//The 'kotlin-android-extensions' Gradle plugin is deprecated
 
-        btn_start.setOnClickListener {
+
+        binding.btnStart.setOnClickListener {
             Log.d("aaa","start butonuna basıldı")
-            txtv_1.text="Start"
+            binding.txtv1.text="Start"
 
             Intent(applicationContext, MyService::class.java).apply {
                 action = MyService.ACTION_START
@@ -38,8 +43,8 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        btn_stop.setOnClickListener {
-            txtv_1.text="Stop"
+        binding.btnStop.setOnClickListener {
+            binding.txtv1.text="Stop"
             Log.d("aaa","stop butonuna basıldı")
             Intent(applicationContext, MyService::class.java).apply {
                 action = MyService.ACTION_STOP
@@ -47,7 +52,7 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        btn_call.setOnClickListener {
+        binding.btnCall.setOnClickListener {
             Log.d("aaa","call butonuna basıldı")
             Intent(applicationContext, MyService::class.java).apply {
                 action = MyService.ACTION_CALL
